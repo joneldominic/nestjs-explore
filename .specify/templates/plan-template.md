@@ -31,7 +31,17 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+Verify compliance with NestJS Explore Constitution principles:
+
+- **DDD Compliance**: Feature organized around domain concepts? Clear bounded context?
+- **Clean Architecture**: Layer dependencies correct? Domain logic in domain layer?
+- **TDD**: Tests written first? Test coverage plan meets 80% minimum?
+- **Clean Code**: Self-documenting names? Single responsibility? No duplication?
+- **Dependency Injection**: Dependencies injected? Abstractions used?
+- **Domain Model**: Rich domain models (not anemic)? Invariants enforced?
+- **Module Organization**: Follows domain module structure? Clear boundaries?
+
+**Violations**: Document any violations in Complexity Tracking section with justification.
 
 ## Project Structure
 
