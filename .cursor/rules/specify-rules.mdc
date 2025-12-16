@@ -3,6 +3,8 @@
 Auto-generated from all feature plans. Last updated: 2025-12-16
 
 ## Active Technologies
+- YAML (GitHub Actions workflow syntax) + GitHub Actions (`actions/checkout@v4`, GitHub CLI, LLM API client), LLM API (OpenAI/Anthropic/etc. - configurable) (001-llm-code-pr-workflow)
+- N/A (workflow uses Git repository for code storage) (001-llm-code-pr-workflow)
 
 - YAML (GitHub Actions workflow syntax), Node.js LTS (20.x or 22.x) + GitHub Actions (hosted runners), pnpm package manager, NestJS build system (001-github-ci-cd)
 
@@ -22,6 +24,7 @@ tests/
 YAML (GitHub Actions workflow syntax), Node.js LTS (20.x or 22.x): Follow standard conventions
 
 ## Recent Changes
+- 001-llm-code-pr-workflow: Added YAML (GitHub Actions workflow syntax) + GitHub Actions (`actions/checkout@v4`, GitHub CLI, LLM API client), LLM API (OpenAI/Anthropic/etc. - configurable)
 
 - 001-github-ci-cd: Added YAML (GitHub Actions workflow syntax), Node.js LTS (20.x or 22.x) + GitHub Actions (hosted runners), pnpm package manager, NestJS build system
 
