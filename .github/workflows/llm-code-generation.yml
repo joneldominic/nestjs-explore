@@ -11,6 +11,11 @@ on:
         description: 'Code generation prompt'
         required: true
         type: string
+      base_branch:
+        description: "Base branch for PR"
+        required: false
+        default: "main"
+        type: string
 
 permissions:
   contents: write
@@ -28,6 +33,18 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Create work branch
+        id: branch
+        run: |
+          BRANCH="claude/${{ github.run_id }}-${{ github.run_attempt }}"
+          echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
+          git checkout -b "$BRANCH"
+
       - name: Run Claude Code
         id: claude
         uses: anthropics/claude-code-action@v1
@@ -39,3 +56,30 @@ jobs:
             --max-turns 10
             --dangerously-skip-permissions
 
+      - name: Commit changes (if any)
+        id: commit
+        run: |
+          if git diff --quiet && git diff --cached --quiet; then
+            echo "no_changes=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          git add -A
+          git commit -m "chore: apply Claude changes"
+          echo "no_changes=false" >> "$GITHUB_OUTPUT"
+
+      - name: Push branch
+        if: steps.commit.outputs.no_changes != 'true'
+        run: |
+          git push --set-upstream origin "${{ steps.branch.outputs.branch }}"
+
+      - name: Create PR
+        if: steps.commit.outputs.no_changes != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create \
+            --base "${{ inputs.base_branch }}" \
+            --head "${{ steps.branch.outputs.branch }}" \
+            --title "Claude changes: ${{ github.run_id }}" \
+            --body "${{ inputs.prompt }}"
