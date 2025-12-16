@@ -1,9 +1,14 @@
 name: CI/CD Pipeline
 
-# Workflow triggers: runs on push to any branch and on pull request events
+# Workflow triggers:
+# - Push to main/master branch (for deployment)
+# - Pull request events (for CI checks on feature branches)
+# This prevents duplicate runs when pushing to a branch with an open PR
 on:
   push:
-    branches: ['**']
+    branches:
+      - main
+      - master
   pull_request:
     types: [opened, synchronize, reopened]
 
