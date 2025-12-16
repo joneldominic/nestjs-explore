@@ -22,8 +22,8 @@
 
 **Purpose**: Create workflow directory structure and initialize workflow file
 
-- [ ] T001 Create `.github/workflows/` directory structure at repository root
-- [ ] T002 Initialize workflow file `.github/workflows/llm-code-generation.yml` with basic workflow structure (name, empty jobs section)
+- [x] T001 Create `.github/workflows/` directory structure at repository root
+- [x] T002 Initialize workflow file `.github/workflows/llm-code-generation.yml` with basic workflow structure (name, empty jobs section)
 
 ---
 
@@ -33,9 +33,9 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T003 Configure workflow trigger (`workflow_dispatch`) with prompt input in `.github/workflows/llm-code-generation.yml`
-- [ ] T004 Configure workflow permissions (contents: write, pull-requests: write, issues: write) in `.github/workflows/llm-code-generation.yml`
-- [ ] T005 Configure job structure (single job: `generate-code`) with `runs-on: ubuntu-latest` in `.github/workflows/llm-code-generation.yml`
+- [x] T003 Configure workflow trigger (`workflow_dispatch`) with prompt input in `.github/workflows/llm-code-generation.yml`
+- [x] T004 Configure workflow permissions (contents: write, pull-requests: write, issues: write) in `.github/workflows/llm-code-generation.yml`
+- [x] T005 Configure job structure (single job: `generate-code`) with `runs-on: ubuntu-latest` in `.github/workflows/llm-code-generation.yml`
 
 **Checkpoint**: Foundation ready - user story implementation can now begin
 
@@ -51,11 +51,11 @@
 
 ### Implementation for User Story 1
 
-- [ ] T006 [US1] Add Claude Code Action step (`anthropics/claude-code-action@v1`) to generate-code job in `.github/workflows/llm-code-generation.yml`
-- [ ] T007 [US1] Configure prompt input (`prompt: ${{ inputs.prompt }}`) in Claude Code Action step in `.github/workflows/llm-code-generation.yml`
-- [ ] T008 [US1] Configure Anthropic API key secret (`anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}`) in Claude Code Action step in `.github/workflows/llm-code-generation.yml`
-- [ ] T009 [US1] Configure Claude model selection (`claude_args: --model claude-sonnet-4-5-20250929`) in Claude Code Action step in `.github/workflows/llm-code-generation.yml`
-- [ ] T010 [US1] Configure max turns (`claude_args: --max-turns 10`) in Claude Code Action step in `.github/workflows/llm-code-generation.yml`
+- [x] T006 [US1] Add Claude Code Action step (`anthropics/claude-code-action@v1`) to generate-code job in `.github/workflows/llm-code-generation.yml`
+- [x] T007 [US1] Configure prompt input (`prompt: ${{ inputs.prompt }}`) in Claude Code Action step in `.github/workflows/llm-code-generation.yml`
+- [x] T008 [US1] Configure Anthropic API key secret (`anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}`) in Claude Code Action step in `.github/workflows/llm-code-generation.yml`
+- [x] T009 [US1] Configure Claude model selection (`claude_args: --model claude-sonnet-4-5-20250929`) in Claude Code Action step in `.github/workflows/llm-code-generation.yml`
+- [x] T010 [US1] Configure max turns (`claude_args: --max-turns 10`) in Claude Code Action step in `.github/workflows/llm-code-generation.yml`
 
 **Checkpoint**: At this point, User Story 1 should be fully functional. Claude Code Action will generate code from prompts. User Stories 2 and 3 are automatically handled by Claude Code Action (branch creation, commits, PR creation).
 
@@ -102,12 +102,12 @@
 
 **Purpose**: Documentation, configuration improvements, and validation
 
-- [ ] T018 [P] Add workflow file comments explaining Claude Code Action usage in `.github/workflows/llm-code-generation.yml`
-- [ ] T019 [P] Document GitHub Secrets setup requirements (ANTHROPIC_API_KEY) in README or quickstart.md
-- [ ] T020 [P] Add workflow file validation (check YAML syntax) before committing
+- [x] T018 [P] Add workflow file comments explaining Claude Code Action usage in `.github/workflows/llm-code-generation.yml`
+- [x] T019 [P] Document GitHub Secrets setup requirements (ANTHROPIC_API_KEY) in README or quickstart.md
+- [x] T020 [P] Add workflow file validation (check YAML syntax) before committing
 - [ ] T021 [P] Test workflow with various prompt examples (simple, complex, multi-file)
 - [ ] T022 [P] Verify error handling (test with invalid API key, empty prompt, etc.)
-- [ ] T023 [P] Document optional configuration (model selection, max-turns, etc.) in workflow comments
+- [x] T023 [P] Document optional configuration (model selection, max-turns, etc.) in workflow comments
 - [ ] T024 [P] Run quickstart.md validation steps
 
 ---

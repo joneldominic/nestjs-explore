@@ -62,6 +62,10 @@ Create `.github/workflows/llm-code-generation.yml` with:
 ```yaml
 name: LLM Code Generation
 
+# Workflow for automated code generation using Claude Code GitHub Actions
+# Accepts a prompt input, generates code via Claude Code, creates a branch, commits code, and opens a PR
+# Reference: https://code.claude.com/docs/en/github-actions
+
 on:
   workflow_dispatch:
     inputs:
@@ -74,12 +78,21 @@ permissions:
   contents: write
   pull-requests: write
   issues: write
+  id-token: write  # Required for AWS Bedrock/Google Vertex AI OIDC authentication
+  actions: read    # Required for Claude to read CI results on PRs
 
 jobs:
   generate-code:
     runs-on: ubuntu-latest
     steps:
-      - uses: anthropics/claude-code-action@v1
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+
+      - name: Run Claude Code
+        id: claude
+        uses: anthropics/claude-code-action@v1
         with:
           prompt: ${{ inputs.prompt }}
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
