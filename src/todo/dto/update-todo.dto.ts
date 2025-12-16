@@ -6,4 +6,8 @@ export class UpdateTodoDto extends PartialType(CreateTodoDto) {
   @IsOptional()
   @IsBoolean()
   completed?: boolean;
+
+  @IsOptional()
+  @IsBoolean()
+  isArchive?: boolean;
 }
