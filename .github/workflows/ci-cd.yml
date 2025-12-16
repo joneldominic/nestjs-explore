@@ -3,6 +3,7 @@ name: CI/CD Pipeline
 # Workflow triggers:
 # - Push to main/master branch (for deployment)
 # - Pull request events (for CI checks on feature branches)
+# - Manual/API trigger (workflow_dispatch) for external tools like n8n
 # This prevents duplicate runs when pushing to a branch with an open PR
 on:
   push:
@@ -11,6 +12,7 @@ on:
       - master
   pull_request:
     types: [opened, synchronize, reopened]
+  workflow_dispatch:
 
 jobs:
   # Test job: Runs unit tests and e2e tests
