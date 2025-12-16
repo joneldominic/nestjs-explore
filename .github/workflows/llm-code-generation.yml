@@ -69,6 +69,15 @@ jobs:
           git commit -m "chore: apply Claude changes"
           echo "no_changes=false" >> "$GITHUB_OUTPUT"
 
+      # Important: Claude action can alter git auth/credential state in CI
+      # Re-wire origin to use the workflow GITHUB_TOKEN before pushing
+      - name: Re-authenticate git for push
+        if: steps.commit.outputs.no_changes != 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git"
+
       - name: Push branch
         if: steps.commit.outputs.no_changes != 'true'
         run: |
