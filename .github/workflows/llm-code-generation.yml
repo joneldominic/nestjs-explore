@@ -37,5 +37,5 @@ jobs:
           claude_args: |
             --model claude-sonnet-4-5-20250929
             --max-turns 10
-            --allowedTools Write,Bash
+            --dangerously-skip-permissions
 
