@@ -1,4 +1,4 @@
-import { IsString, IsOptional, MaxLength } from 'class-validator';
+import { IsString, IsOptional, MaxLength, IsBoolean } from 'class-validator';
 
 export class CreateTodoDto {
   @IsString()
@@ -9,4 +9,8 @@ export class CreateTodoDto {
   @IsString()
   @MaxLength(1000)
   description?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  isArchive?: boolean;
 }
