@@ -102,10 +102,10 @@
 
 - [x] T022 [P] Validate workflow YAML syntax and structure
 - [x] T023 [P] Add workflow comments for clarity and maintainability in `.github/workflows/ci-cd.yml`
-- [ ] T024 Test complete workflow end-to-end by pushing code and verifying all jobs execute sequentially
-- [ ] T025 Verify workflow status appears in pull request checks
-- [ ] T026 Verify error messages are clear when workflow fails (test by introducing intentional failure)
-- [ ] T027 Update README.md with workflow documentation (optional, if repository has README)
+- [x] T024 Test complete workflow end-to-end by pushing code and verifying all jobs execute sequentially
+- [x] T025 Verify workflow status appears in pull request checks
+- [x] T026 Verify error messages are clear when workflow fails (test by introducing intentional failure)
+- [x] T027 Update README.md with workflow documentation (optional, if repository has README)
 
 ---
 

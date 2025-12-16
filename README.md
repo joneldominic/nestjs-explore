@@ -57,6 +57,33 @@ $ pnpm run test:e2e
 $ pnpm run test:cov
 ```
 
+## CI/CD Pipeline
+
+This project uses GitHub Actions for continuous integration and deployment. The workflow automatically runs tests, builds the application, and prepares for deployment.
+
+### Workflow Overview
+
+The CI/CD pipeline consists of three sequential jobs:
+
+1. **Test Job**: Runs unit tests and e2e tests
+2. **Build Job**: Builds the application and uploads artifacts (runs after tests pass)
+3. **Deploy Job**: Deployment placeholder (ready for configuration)
+
+### When It Runs
+
+- **Pull Requests**: Automatically runs on PR creation and updates
+- **Main Branch**: Runs on push to `main` or `master` branch
+
+### Viewing Workflow Status
+
+- Check the **Actions** tab in GitHub to see workflow runs
+- View test results and build status in pull request checks
+- Workflow status appears as a checkmark (✓) or X in PR status
+
+### Workflow File
+
+The workflow configuration is located at `.github/workflows/ci-cd.yml`.
+
 ## Deployment
 
 When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
