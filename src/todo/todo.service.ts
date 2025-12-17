@@ -19,6 +19,7 @@ export class TodoService {
       title: createTodoDto.title,
       description: createTodoDto.description,
       completed: false,
+      isArchive: false,
       createdAt: now,
       updatedAt: now,
     };
@@ -66,6 +67,28 @@ export class TodoService {
       todo.completed = updateTodoDto.completed;
     }
 
+    todo.updatedAt = new Date();
+    return todo;
+  }
+
+  archive(id: number): Todo {
+    if (isNaN(id) || id <= 0) {
+      throw new BadRequestException('Invalid todo ID');
+    }
+
+    const todo = this.findOne(id);
+    todo.isArchive = true;
+    todo.updatedAt = new Date();
+    return todo;
+  }
+
+  unarchive(id: number): Todo {
+    if (isNaN(id) || id <= 0) {
+      throw new BadRequestException('Invalid todo ID');
+    }
+
+    const todo = this.findOne(id);
+    todo.isArchive = false;
     todo.updatedAt = new Date();
     return todo;
   }
