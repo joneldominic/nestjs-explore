@@ -43,4 +43,9 @@ export class TodoController {
   remove(@Param('id') id: string) {
     return this.todoService.remove(+id);
   }
+
+  @Patch(':id/archive')
+  archive(@Param('id') id: string) {
+    return this.todoService.archive(+id);
+  }
 }
