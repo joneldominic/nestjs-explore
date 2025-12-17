@@ -54,7 +54,8 @@ jobs:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           claude_args: |
             --model claude-sonnet-4-5-20250929
-            --max-turns 10
+            --max-turns 25
+            --allowedTools "Write,Bash(ls),Bash(pwd),Bash(cat),Bash(grep),Bash(rg),Bash(find),Bash(test)"
             --dangerously-skip-permissions
 
       - name: Commit changes (if any)
