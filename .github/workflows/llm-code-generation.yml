@@ -7,6 +7,10 @@ name: LLM Code Generation
 on:
   workflow_dispatch:
     inputs:
+      run_id:
+        description: "External run id (e.g. from n8n). If empty, uses GitHub run id."
+        required: false
+        type: string
       prompt:
         description: 'Code generation prompt'
         required: true
@@ -88,9 +92,21 @@ jobs:
         if: steps.commit.outputs.no_changes != 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUN_ID: ${{ inputs.run_id || github.run_id }}
         run: |
+          BODY=$(cat <<EOF
+          ## 🤖 Claude Code PR
+
+          **Run ID:** \`${RUN_ID}\`
+          **GitHub Run:** \`${{ github.run_id }}\` (attempt \`${{ github.run_attempt }}\`)
+
+          ### Prompt
+          ${{ inputs.prompt }}
+          EOF
+          )
+
           gh pr create \
             --base "${{ inputs.base_branch }}" \
             --head "${{ steps.branch.outputs.branch }}" \
-            --title "Claude changes: ${{ github.run_id }}" \
-            --body "${{ inputs.prompt }}"
+            --title "Claude changes: ${RUN_ID}" \
+            --body "$BODY"
