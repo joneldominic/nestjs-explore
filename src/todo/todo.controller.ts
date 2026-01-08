@@ -38,6 +38,12 @@ export class TodoController {
     return this.todoService.update(+id, updateTodoDto);
   }
 
+  @Patch(':id/archive')
+  @HttpCode(HttpStatus.OK)
+  archive(@Param('id') id: string) {
+    return this.todoService.archive(+id);
+  }
+
   @Delete(':id')
   @HttpCode(HttpStatus.OK)
   remove(@Param('id') id: string) {
