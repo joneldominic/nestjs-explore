@@ -19,6 +19,7 @@ export class TodoService {
       title: createTodoDto.title,
       description: createTodoDto.description,
       completed: false,
+      isArchived: false,
       createdAt: now,
       updatedAt: now,
     };
@@ -82,5 +83,16 @@ export class TodoService {
 
     this.todos.splice(index, 1);
     return { message: 'Todo item deleted successfully' };
+  }
+
+  archive(id: number): Todo {
+    if (isNaN(id) || id <= 0) {
+      throw new BadRequestException('Invalid todo ID');
+    }
+
+    const todo = this.findOne(id);
+    todo.isArchived = true;
+    todo.updatedAt = new Date();
+    return todo;
   }
 }
